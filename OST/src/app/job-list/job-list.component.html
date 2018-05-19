@@ -1,8 +1,8 @@
 <div class="card-column">
   <div *ngFor="let jobcard of jobcards">
     <div class="card mb-3">
-      <div class="card-body"  ng-click="">
-        <h6 class="card-title mb-1"><a href="#">{{jobcard.title}}</a></h6>
+      <div class="card-body"  routerLink="/job/{{jobcard.id}}">
+        <h6 class="card-title mb-1">{{jobcard.title}}</h6>
         <p class="card-text small">Pay: {{jobcard.pay}} $TYNE
           <a href="#">#OSTPoC</a>
         </p>
