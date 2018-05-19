@@ -3,12 +3,12 @@ import { Observable } from 'rxjs/Observable';
 import { HttpClient } from '@angular/common/http';
 
 export interface Job {
-  job_id: int,
+  job_id: number,
   title: string;
   description: string;
   skills: string;
-  pay: int,
-  date_posted: date,
+  pay: number,
+  date_posted: string,
   username: string;
 }
 
@@ -25,7 +25,7 @@ export class JobsService {
   }
 
   insertJob(job: Job): Observable<Job> {
-    return this.http.post<Cat>('http://localhost:8000/api/jobs/new', job);
+    return this.http.post<Job>('http://localhost:8000/api/jobs/new', job);
   }
 
   deleteJob(job_id: string) {
