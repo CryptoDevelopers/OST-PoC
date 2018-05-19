@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const pg = require('pg');
-const password = ; //REDACTED for GITHUB
+const password = 'tynewood3'; //REDACTED for GITHUB
 const connectionString = 'postgresql://ost:' + password + '@ost-poc.cmsffmdasle7.us-east-1.rds.amazonaws.com:5432/ost';
 const app = express();
 
