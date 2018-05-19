@@ -68,6 +68,7 @@ body.fixed-nav {
 body.sidenav-toggled #mainNav.fixed-top .sidenav-toggler {
   overflow-x: hidden;
   width: 55px;
+      box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px;
 }
 
 body.sidenav-toggled #mainNav.fixed-top .sidenav-toggler .nav-item,
@@ -300,4 +301,13 @@ footer.sticky-footer {
   body.sidenav-toggled footer.sticky-footer {
     width: calc(100% - 55px);
   }
+}
+
+.card-title {
+  color: rgb(109, 171, 237);
+  font-size: 30px;
+}
+
+.card-body-desc {
+  cursor: pointer;
 }
