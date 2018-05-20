@@ -4,10 +4,12 @@
 <div class="card-column">
   <div *ngFor="let jobcard of jobcards">
     <div class="card mb-3 px-3 py-3">
-      <div class="card-body-desc mb-3"  routerLink="/job/{{jobcard.id}}">
+      <div class="card-body-desc mb-3"  routerLink="/job/{{jobcard.jobs_id}}">
         <h6 class="card-title mb-1">{{jobcard.title}}</h6>
         <p class="card-text">Pay: {{jobcard.pay}}$TYNE</p>
         <p class="card-text">Est. Time: 4 weeks</p>
+        <p class="card-text">{{jobcard.jobs_id}}</p>
+        <span class="badge badge-pill badge-primary px-2 py-1 mr-2">{{jobcard.skills}}</span>
         <span class="badge badge-pill badge-primary px-2 py-1">Solidity</span>
         <span class="badge badge-pill badge-primary px-2 py-1 mx-2">Ethereum</span>
 

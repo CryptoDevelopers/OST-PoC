@@ -8,7 +8,8 @@ import { JobService } from '../job.service'
   styleUrls: ['./job-list.component.css']
 })
 export class JobListComponent implements OnInit {
-jobcards: jobCard[];
+  jobcards: jobCard[];
+
   constructor(private jobService: JobService) { }
 
   ngOnInit() {
@@ -18,6 +19,8 @@ jobcards: jobCard[];
   getJobs(): void {
     this.jobService.getJobs()
     .subscribe(jobcards => this.jobcards = jobcards)
+
+    console.log('done getting jobs')
   }
 
 }

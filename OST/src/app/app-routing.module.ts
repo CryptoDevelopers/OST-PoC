@@ -5,7 +5,7 @@ import { JobDetailComponent }   from './job-detail/job-detail.component'
 
 const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
-  { path: 'job/:id', component: JobDetailComponent},
+  { path: 'job/:jobs_id', component: JobDetailComponent},
   { path: 'dashboard', component: JobListComponent}
 ];
 
