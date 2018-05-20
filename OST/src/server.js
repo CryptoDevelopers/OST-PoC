@@ -84,7 +84,7 @@ app.route('/api/jobs/:job_id').get((req, res) => {
 app.route('/api/jobs/new').post((req, res) => {
 	console.log('Creating new job');
 	// Grab data from http request
-  const data = {job_id: req.body.job_id, title: req.body.title, description: req.body.description, skills: req.body.skills, pay: req.body.pay, date_posted: req.body.date_posted, username: req.body.username};
+  const data = {title: req.body.title, description: req.body.description, skills: req.body.skills, pay: req.body.pay, date_posted: req.body.date_posted, username: req.body.username};
 	// Get a Postgres client from the connection pool
 	pg.connect(connectionString, (err, client, done) => {
 		// Handle connection errors
@@ -95,7 +95,7 @@ app.route('/api/jobs/new').post((req, res) => {
 		}
 
 		// SQL Query > Insert Data
-		const query = client.query('INSERT INTO jobs(job_id, title, description, skills, pay, date_posted, username) values($1, $2, $3, $4, $5, $6, $7)', [data.job_id, data.title, data.description, data.skills, data.pay, data.date_posted, data.username], function (err, result) {
+		const query = client.query('INSERT INTO jobs(title, description, skills, pay, date_posted, username) values($1, $2, $3, $4, $5, $6)', [data.title, data.description, data.skills, data.pay, data.date_posted, data.username], function (err, result) {
 			if (err) {
 				return res.status(400).send(err.detail)
 			}
@@ -319,7 +319,7 @@ app.route('/applications/new').post((req, res) => {
 	var poster = '';
 
 	// Grab data from http request
-	const data = {application_id: req.body.application_id, job_id: req.body.job_id, username: req.body.username, date_applied: req.body.date_applied, message: req.body.message};
+	const data = {job_id: req.body.job_id, username: req.body.username, date_applied: req.body.date_applied, message: req.body.message};
 
 	// Get a Postgres client from the connection pool
 	pg.connect(connectionString, (err, client, done) => {
@@ -376,7 +376,7 @@ app.route('/applications/new').post((req, res) => {
 						}
 
 						// SQL Query > Insert Data
-						const query = client.query('INSERT INTO applications(application_id, job_id, username, date_applied, message) values($1, $2, $3, $4, $5)', [data.application_id, data.job_id, data.username, data.date_applied, data.message], function (err, result) {
+						const query = client.query('INSERT INTO applications(job_id, username, date_applied, message) values($1, $2, $3, $4)', [data.job_id, data.username, data.date_applied, data.message], function (err, result) {
 							if (err) {
 								return res.status(400).send(err.detail)
 							}
