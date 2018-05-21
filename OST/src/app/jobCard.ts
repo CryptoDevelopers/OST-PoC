@@ -1,5 +1,9 @@
 export class jobCard {
-  id: number;
+  jobs_id: number;
+  date: string;
   title: string;
+  description: string;
+  skills: string;
   pay: number;
+  username: string;
 }
