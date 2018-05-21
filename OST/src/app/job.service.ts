@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { jobCard } from './jobCard';
 import { Observable, of } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Response } from '@angular/http';
+
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 
