@@ -11,6 +11,7 @@ import { AppRoutingModule } from './/app-routing.module';
 import { JobDetailComponent } from './job-detail/job-detail.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
+import { UserService } from './user.service'
 
 @NgModule({
   declarations: [
@@ -28,7 +29,10 @@ import { LoginComponent } from './login/login.component';
     HttpClientModule,
     FormsModule
   ],
-  providers: [],
+  providers: [
+    
+    UserService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
