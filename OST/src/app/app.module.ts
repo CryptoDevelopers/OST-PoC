@@ -30,7 +30,6 @@ import { UserService } from './user.service'
     FormsModule
   ],
   providers: [
-    
     UserService
   ],
   bootstrap: [AppComponent]

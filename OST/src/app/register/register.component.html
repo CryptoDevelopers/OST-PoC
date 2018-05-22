@@ -69,6 +69,10 @@
               </div>
             </div>
           </div>
+          {{diagnostic}}
+          <div [hidden]="!submitted">
+          <ngb-alert type="success" (close)="closeAlert(alert)">Successfully registered!</ngb-alert>
+        </div>
           <button type="submit" class="btn btn-primary btn-block" (click)="newUser(); registerForm.reset()">Register</button>
         </form>
         <div class="text-center">

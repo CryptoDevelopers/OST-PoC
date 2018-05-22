@@ -9,20 +9,16 @@ import { UserService } from '../user.service'
 })
 export class RegisterComponent implements OnInit {
   user: User
-  skills = ['Javascript', 'Python',
-            'AWS', 'C++'];
-model = new User();
+  model = new User();
   submitted = false;
 
   constructor(private userService: UserService) { }
 
-
-  onSubmit() { this.submitted = true; }
-
   newUser() {
-    this.model = new User();
-    this.userService.insertUser(this.model)
-      .subscribe(user => this.user = user)
+      this.submitted = true;
+      this.userService.insertUser(this.model)
+        .subscribe(user => this.user = user)
+
   }
   ngOnInit() {
   }
