@@ -17,7 +17,7 @@ const transactionService = ostObj.services.transactions;
 
 app.use(bodyParser.json());
 app.listen(8000, () => {
-	console.log('Server started!');
+	console.log('\n********************* Server started! *********************');
 });
 
 // JOBS ----------------------------------------------------------------------
@@ -482,11 +482,11 @@ app.route('/login').post((req, res) => {
 		query.on('end', () => {
 			done();
 			if (results.length == 0) {
-				console.log('Login Failed');
+				console.log('Login failed');
 				return res.status(400).send("False")
 			}
 			else {
-				console.log('Login Success');
+				console.log('Login success');
 				return res.status(200).send("True");
 			}
 		});
