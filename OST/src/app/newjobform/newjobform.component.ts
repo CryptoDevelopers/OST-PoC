@@ -11,18 +11,20 @@ import { JobsService }  from '../jobs.service';
 export class NewjobformComponent implements OnInit {
   newJob: jobCard;
   model = new jobCard();
+  submitted = false;
 
   constructor( private jobsService: JobsService ) { }
 
   ngOnInit() {
 
-      this.model.username="";
+      this.model.username="Bob";
     this.model.job_id=999;
-    this.model.date_posted="";
+    this.model.date_posted="2018-05-25";
   }
 
   postJob() {
-      this.jobsService.insertJob(this.model)
+    this.submitted = true;
+    this.jobsService.insertJob(this.model)
       .subscribe(newJob => this.newJob = newJob)
 
     }

@@ -8,16 +8,19 @@ import { UserService } from '../user.service'
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  user: User
+  username: string;
   model = new User();
-  submitted = false;
+  loggedin = false;
 
   constructor(private userService: UserService) { }
 
   newUser() {
-      this.submitted = true;
-      this.userService.insertUser(this.model)
-        .subscribe(user => this.user = user)
+      this.loggedin = true;
+      console.log("logged in user " + this.model.username)
+      this.userService.getUser(this.model.username)
+        .subscribe(user => this.username = user.username)
+
+      this.username = this.model.username
 
   }
   ngOnInit() {

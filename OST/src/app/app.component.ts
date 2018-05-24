@@ -6,5 +6,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  loggedinUser: string
   title = 'app';
+
+  userLoggedin(username: string){
+    this.loggedinUser = username
+  }
 }

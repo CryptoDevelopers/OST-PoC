@@ -11,8 +11,8 @@
   <!-- Bootstrap core CSS-->
 </head>
 
-<body class="bg-dark">
-  <div class="container pt-1 pb-2">
+<body>
+  <div class="container pt-5 pb-2">
     <div class="card card-register mx-auto">
       <div class="card-header">Register an Account</div>
       <div class="card-body mt-2">
@@ -69,7 +69,6 @@
               </div>
             </div>
           </div>
-          {{diagnostic}}
           <div [hidden]="!submitted">
           <ngb-alert type="success" (close)="closeAlert(alert)">Successfully registered!</ngb-alert>
         </div>
