@@ -11,7 +11,9 @@ import { AppRoutingModule } from './/app-routing.module';
 import { JobDetailComponent } from './job-detail/job-detail.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
-import { UserService } from './user.service'
+import { UserService } from './user.service';
+import { JobsService }  from './jobs.service';
+import { NewjobformComponent } from './newjobform/newjobform.component'
 
 @NgModule({
   declarations: [
@@ -20,7 +22,8 @@ import { UserService } from './user.service'
     JobListComponent,
     JobDetailComponent,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    NewjobformComponent
   ],
   imports: [
     NgbModule.forRoot(),
@@ -30,7 +33,8 @@ import { UserService } from './user.service'
     FormsModule
   ],
   providers: [
-    UserService
+    UserService,
+    JobsService
   ],
   bootstrap: [AppComponent]
 })

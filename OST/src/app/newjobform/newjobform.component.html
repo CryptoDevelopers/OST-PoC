@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <title>SB Admin - Start Bootstrap Template</title>
+  <!-- Bootstrap core CSS-->
+</head>
+<body >
+  <div class="container">
+    <div class="card card-register mx-auto mt-5">
+      <div class="card-header">Post a new job</div>
+      <div class="card-body">
+        <form #registerForm="ngForm">
+          <div class="form-group">
+            <div class="form-row">
+              <div class="col-md-12">
+                <label for="inputTitle">Title</label>
+                <input class="form-control" id="inputTitle" type="text" placeholder="A good title for the project"
+                  required [(ngModel)]="model.title" name="title">
+              </div>
+            </div>
+            <div class="form-row pt-3">
+              <div class="col-md-12">
+                <label for="inputDescription">Description</label>
+                <textarea class="form-control" rows="5" id="inputDescription" type="text" placeholder="Enter a description of the task. Be as detailed as possible"
+                  required [(ngModel)]="model.description" name="description"> </textarea>
+              </div>
+            </div>
+            <div class="form-row pt-3">
+            <div class="col-md-12">
+              <label for="inputSkills">Skills</label>
+              <input class="form-control" id="inputSkills" type="text" placeholder="Skills needed to complete this job"
+                required [(ngModel)]="model.skills" name="skills">
+            </div>
+          </div>
+          <div class="form-row pt-3">
+            <div class="col-md-12">
+              <label for="inputPay">Pay ($Tyne)</label>
+              <input class="form-control" id="inputPay" type="number" placeholder="What is the pay for the job?"
+                required [(ngModel)]="model.pay" name="pay">
+            </div>
+            {{diagnostic}}
+
+          </div>
+          </div>
+          <div [hidden]="!submitted">
+          <ngb-alert type="success" (close)="closeAlert(alert)">Successfully registered!</ngb-alert>
+        </div>
+          <button type="submit" class="btn btn-primary btn-block" (click)="postJob();">Post Job</button>
+          <button type="button" class="btn btn-primary btn-block" routerLink="/dashboard">Cancel</button>
+
+        </form>
+        <div class="text-center">
+          <a class="d-block small mt-3" routerLink="/dashboard">Cancel</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Bootstrap core JavaScript-->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <!-- Core plugin JavaScript-->
+  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+</body>
+
+</html>

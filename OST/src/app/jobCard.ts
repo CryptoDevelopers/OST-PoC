@@ -1,9 +1,13 @@
 export class jobCard {
-  jobs_id: number;
-  date: string;
-  title: string;
-  description: string;
-  skills: string;
-  pay: number;
-  username: string;
+  public job_id: number
+  public date_posted: string
+  public title: string
+  public description: string
+  public skills: string
+  public pay: number
+  public username: string
+
+  constructor(
+
+  ) {}
 }

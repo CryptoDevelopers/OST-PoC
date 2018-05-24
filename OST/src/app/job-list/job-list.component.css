@@ -311,3 +311,6 @@ footer.sticky-footer {
 .card-body-desc {
   cursor: pointer;
 }
+#postjobbutton {
+  float: right;
+}

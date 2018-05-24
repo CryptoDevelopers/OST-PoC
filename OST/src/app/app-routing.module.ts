@@ -4,6 +4,7 @@ import { JobListComponent }     from './job-list/job-list.component'
 import { JobDetailComponent }   from './job-detail/job-detail.component'
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
+import { NewjobformComponent } from './newjobform/newjobform.component'
 
 
 const routes: Routes = [
@@ -11,7 +12,8 @@ const routes: Routes = [
   { path: 'job/:jobs_id', component: JobDetailComponent},
   { path: 'dashboard', component: JobListComponent},
   { path: 'login', component:LoginComponent},
-  { path: 'register', component: RegisterComponent}
+  { path: 'register', component: RegisterComponent},
+  { path: 'postjob', component: NewjobformComponent}
 ];
 
 @NgModule({

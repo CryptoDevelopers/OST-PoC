@@ -14,15 +14,15 @@ export class RegisterComponent implements OnInit {
 
   constructor(private userService: UserService) { }
 
+  ngOnInit() {
+  }
+
   newUser() {
       this.submitted = true;
       this.userService.insertUser(this.model)
         .subscribe(user => this.user = user)
 
   }
-  ngOnInit() {
-  }
-
 
   // TODO: Remove this when we're done
   get diagnostic() { return JSON.stringify(this.model); }

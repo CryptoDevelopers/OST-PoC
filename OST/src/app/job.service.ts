@@ -61,8 +61,8 @@ export class JobService {
 
     for(var resp in data){
       tempJob = {
-        jobs_id: data[resp]['job_id'],
-        date: data[resp]['date_posted'],
+        job_id: data[resp]['job_id'],
+        date_posted: data[resp]['date_posted'],
         title: data[resp]['title'],
         description: data[resp]['description'],
         skills: data[resp]['skills'],
