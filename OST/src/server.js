@@ -17,12 +17,12 @@ const transactionService = ostObj.services.transactions;
 
 app.use(bodyParser.json());
 app.listen(8000, () => {
-	console.log('Server started!');
+	console.log('\n********************* Server started! *********************');
 });
 
 // JOBS ----------------------------------------------------------------------
 app.route('/api/jobs/all').get((req, res) => {
-	console.log('\nGetting all jobs');
+	console.log('\nGetting all jobs...');
 	const results = [];
 	// Get a Postgres client from the connection pool
 	pg.connect(connectionString, (err, client, done) => {
@@ -48,7 +48,7 @@ app.route('/api/jobs/all').get((req, res) => {
 
 app.route('/api/jobs/:job_id').get((req, res) => {
 	const requestedJob = req.params['job_id']
-	console.log('\nGetting job ' + requestedJob);
+	console.log('\nGetting job ' + requestedJob + '...');
 	const results = [];
 	// Get a Postgres client from the connection pool
 	pg.connect(connectionString, (err, client, done) => {
@@ -82,7 +82,7 @@ app.route('/api/jobs/:job_id').get((req, res) => {
 });
 
 app.route('/api/jobs/new').post((req, res) => {
-	console.log('\nCreating new job');
+	console.log('\nPosting new job...');
 	// Grab data from http request
   const data = {title: req.body.title, description: req.body.description, skills: req.body.skills, pay: req.body.pay, date_posted: req.body.date_posted, username: req.body.username};
 
@@ -127,6 +127,7 @@ app.route('/api/jobs/new').post((req, res) => {
 				// Close connection
 				query.on('end', () => {
 					done();
+					console.log("Job posted")
 					return res.status(200).send("Job posted")
 				});
 			});
@@ -152,7 +153,7 @@ app.route('/api/jobs/new').post((req, res) => {
 
 app.route('/api/jobs/delete/:job_id').delete((req, res) => {
 	const requestedJob = req.params['job_id'];
-	console.log('\nDeleting job ' + requestedJob);
+	console.log('\nDeleting job ' + requestedJob + "...");
 	const results = [];
 	// Get a Postgres client from the connection pool
 	pg.connect(connectionString, (err, client, done) => {
@@ -183,6 +184,7 @@ app.route('/api/jobs/delete/:job_id').delete((req, res) => {
 			else{
 				// SQL Query > Delete Data
 				client.query('DELETE FROM jobs WHERE job_id = '.concat(requestedJob));
+				console.log("Job deleted")
 				return res.status(200).send("Job " + requestedJob + " deleted")
 			}
 		});
@@ -192,7 +194,7 @@ app.route('/api/jobs/delete/:job_id').delete((req, res) => {
 // USERS ----------------------------------------------------------------------
 app.route('/users/:username').get((req, res) => {
 	const requestedUser = req.params['username'];
-	console.log('\nGetting user ' + requestedUser);
+	console.log('\nGetting user ' + requestedUser + '...');
 	const results = [];
 	// Get a Postgres client from the connection pool
 	pg.connect(connectionString, (err, client, done) => {
@@ -227,12 +229,13 @@ app.route('/users/:username').get((req, res) => {
 });
 
 app.route('/users/new').post((req, res) => {
-	console.log('\nCreating new user ');
+	console.log('\nCreating new user...');
 	// Grab data from http request
   const data = {username: req.body.username, password: req.body.password, first_name: req.body.first_name, last_name: req.body.last_name, email: req.body.email, linkedin_url: req.body.linkedin_url, skills: req.body.skills};
 
 	var apiResponse = userService.create({name: data.username}).then(function(a) {
-		console.log(JSON.stringify(a))
+		console.log(JSON.stringify(a));
+		console.log("User created");
 		var user_id = a.data.user.id;
 		console.log("user_id: " + user_id);
 		// Get a Postgres client from the connection pool
@@ -261,11 +264,11 @@ app.route('/users/new').post((req, res) => {
 
 		// Airdrop 1 token to new user
 		airdropService.execute({amount: 10, user_ids: user_id}).then(function(res) {
-			console.log("Air drop initiated: " + JSON.stringify(res));
+			console.log("Air drop initiated:\n" + JSON.stringify(res));
 			var id = res.data.airdrop.id;
 			// Check status of airdrop
 			airdropService.get({id: id}).then(function(res) {
-				console.log("Air drop status: " + JSON.stringify(res));
+				console.log("Air drop status:\n" + JSON.stringify(res));
 			}).catch(function(err) { console.log(JSON.stringify(err)); });
 		}).catch(function(err) {
 			console.log(JSON.stringify(err));
@@ -278,7 +281,7 @@ app.route('/users/new').post((req, res) => {
 
 app.route('/users/delete/:username').delete((req, res) => {
 	const requestedUser = req.params['username'];
-	console.log('\nDeleting user ' + requestedUser);
+	console.log('\nDeleting user ' + requestedUser + '...');
 	const results = [];
 	// Get a Postgres client from the connection pool
 	pg.connect(connectionString, (err, client, done) => {
@@ -309,6 +312,7 @@ app.route('/users/delete/:username').delete((req, res) => {
 			else{
 				// SQL Query > Delete Data
 				client.query("DELETE FROM users WHERE username = '" + requestedUser + "'");
+				console.log(requestedUser + 'deleted');
 				return res.status(200).send("User " + requestedUser + " deleted")
 			}
 		});
@@ -319,7 +323,7 @@ app.route('/users/delete/:username').delete((req, res) => {
 // APPLICATIONS ----------------------------------------------------------------------
 app.route('/applications/:application_id').get((req, res) => {
 	const requestedApplication = req.params['application_id'];
-	console.log('\nGetting application ' + requestedApplication);
+	console.log('\nGetting application ' + requestedApplication + '...');
 	const results = [];
 	// Get a Postgres client from the connection pool
 	pg.connect(connectionString, (err, client, done) => {
@@ -354,7 +358,7 @@ app.route('/applications/:application_id').get((req, res) => {
 });
 
 app.route('/applications/new').post((req, res) => {
-	console.log('\nCreating new application');
+	console.log('\nCreating new application...');
 	var applicator = '';
 	var poster = '';
 
@@ -378,6 +382,7 @@ app.route('/applications/new').post((req, res) => {
 		});
 		// Stream results back one row at a time
 		query.on('row', (row) => {
+			// console.log(row)
 			applicator = JSON.parse(JSON.stringify(row)).user_id;
 		});
 		// After all data is returned, close connection and return results
@@ -400,6 +405,7 @@ app.route('/applications/new').post((req, res) => {
 				});
 				// Stream results back one row at a time
 				query.on('row', (row) => {
+					// console.log(row)
 					poster = JSON.parse(JSON.stringify(row)).user_id;
 				});
 				// After all data is returned, close connection and return results
@@ -435,12 +441,54 @@ app.route('/applications/new').post((req, res) => {
 					transactionService.execute({from_user_id: applicator, to_user_id: poster, action_id: action_id}).then(function(res) {
 						console.log("Apply job funds transfer initiated: \n" + JSON.stringify(res));
 						var transaction_id = res.data.transaction.id
-						console.log("transaction_id:" + JSON.stringify(transaction_id));
+						console.log("Transaction_id:" + JSON.stringify(transaction_id));
 					}).catch(function(err) {
 						console.log(JSON.stringify(err));
 					});
 				});
 			});
+		});
+	});
+});
+
+// Login Authentification
+app.route('/login').post((req, res) => {
+	console.log('\nLogin authentification initiated...');
+	var results = [];
+
+	// Grab data from http request
+	const data = {username: req.body.username, password: req.body.password};
+
+	// Get a Postgres client from the connection pool
+	pg.connect(connectionString, (err, client, done) => {
+		// Handle connection errors
+		if(err) {
+			done();
+			console.log(err);
+			return res.status(500).json({success: false, data: err});
+		}
+		// SQL Query > Select Data
+		const query = client.query("SELECT * FROM users WHERE username = '" + data.username + "' AND password = '" + data.password + "'" , function (err, result) {
+			if (err) {
+				console.log(err);
+				return res.status(400).send(err.detail)
+			}
+		});
+		// Stream results back one row at a time
+		query.on('row', (row) => {
+			results.push(row)
+		});
+		// After all data is returned, close connection and return results
+		query.on('end', () => {
+			done();
+			if (results.length == 0) {
+				console.log('Login failed');
+				return res.status(400).send("False")
+			}
+			else {
+				console.log('Login success');
+				return res.status(200).send("True");
+			}
 		});
 	});
 });
